@@ -1,0 +1,19 @@
+{
+	"dependencies": {
+		"puppeteer": "^21.0.0",
+		"typescript": "^5.4.5"
+	},
+	"name": "share",
+	"version": "1.0.0",
+	"main": "share.js",
+	"scripts": {
+		"build": "tsc",
+		"start": " node dist/test.js",
+		"pretest": "npm run build",
+		"test": "npm run start"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": ""
+}
