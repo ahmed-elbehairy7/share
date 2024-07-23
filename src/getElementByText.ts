@@ -8,7 +8,7 @@ export default async function getElementByText(
 	},
 	timeout = 30000
 ) {
-	const element = await page.waitForXPath(`//span[text()='${text}']`, {
+	const element = await page.waitForXPath(`//span[text()="${text}"]`, {
 		timeout: timeout,
 	});
 	callBack(element);

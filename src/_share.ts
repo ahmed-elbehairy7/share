@@ -7,16 +7,23 @@ import getGroupsList from "./getGroupList";
 export default async function _share(page: Page, index = 0) {
 	//CLick the share button
 	await getElementByText(page, "Share");
-	console.log("preseed the share button");
 
 	//Get Groups list
-	const listIndex = await clickShareButton(page, 0);
+	const listIndex = await clickShareButton(page);
 
-	let groupsList = await getGroupsList(page, listIndex as number);
+	let groupsList = await getGroupsList(page, listIndex);
 
 	// Get the group from the group list and click on it
 	const group = groupsList[index];
-	group.scrollIntoView();
+	try {
+		group.scrollIntoView();
+	} catch (err) {
+		if (err instanceof TypeError) {
+			return;
+		}
+		console.error(err);
+		throw err;
+	}
 	group.click();
 
 	// Share to the group
@@ -24,5 +31,6 @@ export default async function _share(page: Page, index = 0) {
 
 	// Check if shared successfully
 	await CheckPosted(page, index);
-	share(index + 1);
+
+	await _share(page, index + 1);
 }

@@ -1,11 +1,14 @@
 const share = require("./index").handler;
 
+const multi =
+	"https://www.facebook.com/thegreencity.shop/posts/pfbid0ZmS6VwoDpuh8BK75YHGpM1oEZo4pkBF4FComtZ4KBRPUyi5Jz3Aunv6WPQU6nBGMl";
+const video = "https://fb.watch/tuhjIZjC-C/";
 async function main() {
 	console.log(await share(e));
 }
 const e = {
 	queryStringParameters: {
-		url: "https://fb.watch/tuhjIZjC-C/",
+		url: multi,
 		cookies: [
 			{
 				name: "usida",
