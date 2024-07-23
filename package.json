@@ -11,12 +11,13 @@
 		"start": " node dist/test.js",
 		"pretest": "npm run tsc",
 		"test": "npm run start",
-		"prebuild": "npm run tsc && del deploy /q",
-		"build": " copy dist deploy && del deploy\\test.js && cd deploy && npm init -y && npm install puppeteer@21.0.0",
-		"postbuild": "cd deploy && wsl --shell-type standard -e zip -r deployment_pack.zip . && copy deployment_pack.zip ../deployment_pack.zip && del deployment_pack.zip"
+		"prebuild": "npx rimraf dist/node_modules && del dist /q &&  npm run tsc && del dist\\test.js",
+		"build": "cd dist && npm init -y && npm install puppeteer@21.0.0 --omit=dev && echo please run the node-prune command before packing && start /b /wait wsl --cd D:/pam/share/dist && cd ..",
+		"postbuild": "cd dist && wsl --shell-type standard -e zip -r deployment_pack.zip . && copy deployment_pack.zip ../deployment_pack.zip && del deployment_pack.zip && cd .."
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
+	"devDependencies": {},
 	"description": ""
 }
