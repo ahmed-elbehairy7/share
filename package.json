@@ -7,10 +7,13 @@
 	"version": "1.0.0",
 	"main": "share.js",
 	"scripts": {
-		"build": "tsc",
+		"tsc": "tsc",
 		"start": " node dist/test.js",
-		"pretest": "npm run build",
-		"test": "npm run start"
+		"pretest": "npm run tsc",
+		"test": "npm run start",
+		"prebuild": "del deploy /q",
+		"build": " copy dist deploy && del deploy\\test.js && cd deploy && npm init -y && npm install puppeteer@21.0.0",
+		"postbuild": "cd deploy && wsl --shell-type standard -e zip -r deployment_pack.zip . && copy deployment_pack.zip ../deployment_pack.zip && del deployment_pack.zip"
 	},
 	"keywords": [],
 	"author": "",
