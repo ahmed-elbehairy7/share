@@ -11,7 +11,7 @@
 		"start": " node dist/test.js",
 		"pretest": "npm run tsc",
 		"test": "npm run start",
-		"prebuild": "del deploy /q",
+		"prebuild": "npm run tsc && del deploy /q",
 		"build": " copy dist deploy && del deploy\\test.js && cd deploy && npm init -y && npm install puppeteer@21.0.0",
 		"postbuild": "cd deploy && wsl --shell-type standard -e zip -r deployment_pack.zip . && copy deployment_pack.zip ../deployment_pack.zip && del deployment_pack.zip"
 	},

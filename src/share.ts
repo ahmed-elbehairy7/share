@@ -24,7 +24,6 @@ async function share(cookies: Array<Protocol.Network.Cookie>, url: string) {
 		// executablePath: "/usr/bin/chromium-browser",
 		slowMo: 100,
 		args: [`--window-size=1200,800`],
-		headless: false,
 	});
 	const [page] = await browser.pages();
 
