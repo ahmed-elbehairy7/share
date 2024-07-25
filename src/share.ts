@@ -1,5 +1,6 @@
 import { launch, Protocol } from "puppeteer";
 import _share from "./_share";
+import { cookiesError, urlError } from "./exceptions";
 
 export default async function share(
 	cookies: Array<Protocol.Network.Cookie>,

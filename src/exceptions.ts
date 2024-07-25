@@ -1,2 +1,2 @@
-class cookiesError extends Error {}
-class urlError extends Error {}
+export class cookiesError extends Error {}
+export class urlError extends Error {}

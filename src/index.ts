@@ -1,5 +1,6 @@
 import { Protocol } from "puppeteer";
 import share from "./share";
+import { cookiesError, urlError } from "./exceptions";
 
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
