@@ -1,4 +1,4 @@
-import { Page } from "puppeteer";
+import { Page } from "puppeteer-core";
 
 export default async function getGroupsList(page: Page, listIndex: number) {
 	while (true) {

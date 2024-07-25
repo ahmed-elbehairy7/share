@@ -1,4 +1,4 @@
-import { Page } from "puppeteer";
+import { Page } from "puppeteer-core";
 import getElementByText from "./getElementByText";
 import CheckPosted from "./checkPosted";
 import clickShareButton from "./clickShareButton";

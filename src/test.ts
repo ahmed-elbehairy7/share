@@ -1,8 +1,6 @@
 const share = require("./index").handler;
 
-async function main() {
-	console.log(await share(e));
-}
+async function main() {}
 
 const multi =
 	"https://www.facebook.com/thegreencity.shop/posts/pfbid0ZmS6VwoDpuh8BK75YHGpM1oEZo4pkBF4FComtZ4KBRPUyi5Jz3Aunv6WPQU6nBGMl";

@@ -1,5 +1,6 @@
-import { launch, Protocol } from "puppeteer";
+import { launch, Protocol } from "puppeteer-core";
 import _share from "./_share";
+import Chromium from "@sparticuz/chromium";
 import { cookiesError, urlError } from "./exceptions";
 
 export default async function share(
@@ -10,7 +11,15 @@ export default async function share(
 	const browser = await launch({
 		// executablePath: "/usr/bin/chromium-browser",
 		slowMo: 100,
-		args: [`--window-size=1200,800`],
+		args: [
+			...Chromium.args,
+			"--no-sandbox",
+			"--disabled-setupid-sandbox",
+			"--window-size=1200,800",
+		],
+		executablePath: await Chromium.executablePath(),
+		ignoreDefaultArgs: ["--disable-extensions"],
+		headless: Chromium.headless,
 	});
 	const [page] = await browser.pages();
 

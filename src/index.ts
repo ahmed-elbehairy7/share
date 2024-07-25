@@ -1,4 +1,4 @@
-import { Protocol } from "puppeteer";
+import { Protocol } from "puppeteer-core";
 import share from "./share";
 import { cookiesError, urlError } from "./exceptions";
 
@@ -15,11 +15,12 @@ exports.handler = async (event: any) => {
 			statusCode: 200,
 			body: { status: "done successfully" },
 		};
-	} catch (err) {
+	} catch (err: any) {
+		let statusCode = 500;
 		if (err instanceof urlError || err instanceof cookiesError) {
-			response = { statusCode: 400, error: err.message };
+			statusCode = 400;
 		}
-		response = { statusCode: 500, error: err };
+		response = { statusCode, error: err.toString() };
 	}
 	return response;
 };

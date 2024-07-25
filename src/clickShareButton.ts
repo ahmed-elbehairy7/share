@@ -1,4 +1,4 @@
-import { Page } from "puppeteer";
+import { Page } from "puppeteer-core";
 import getElementByText from "./getElementByText";
 
 export default async function clickShareButton(page: Page, listIndex = 0) {
