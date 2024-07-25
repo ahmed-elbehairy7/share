@@ -1,13 +1,16 @@
 const share = require("./index").handler;
 
-const multi =
-	"https://www.facebook.com/thegreencity.shop/posts/pfbid0ZmS6VwoDpuh8BK75YHGpM1oEZo4pkBF4FComtZ4KBRPUyi5Jz3Aunv6WPQU6nBGMl";
-const video = "https://fb.watch/tuhjIZjC-C/";
 async function main() {
 	console.log(await share(e));
 }
+
+const multi =
+	"https://www.facebook.com/thegreencity.shop/posts/pfbid0ZmS6VwoDpuh8BK75YHGpM1oEZo4pkBF4FComtZ4KBRPUyi5Jz3Aunv6WPQU6nBGMl";
+
+const video = "https://fb.watch/tuhjIZjC-C/";
+
 const e = {
-	queryStringParameters: {
+	body: JSON.stringify({
 		url: multi,
 		cookies: [
 			{
@@ -191,7 +194,7 @@ const e = {
 				sourcePort: 443,
 			},
 		],
-	},
+	}),
 };
 
 main();

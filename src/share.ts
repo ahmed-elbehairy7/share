@@ -1,24 +1,10 @@
 import { launch, Protocol } from "puppeteer";
 import _share from "./_share";
 
-export default async function main(
+export default async function share(
 	cookies: Array<Protocol.Network.Cookie>,
 	url: string
 ) {
-	try {
-		await share(cookies, url);
-		return { status: "done successfully" };
-	} catch (error) {
-		if (error instanceof urlError || error instanceof cookiesError) {
-			return { error: error.message };
-		}
-		return {
-			error: "An unkown error occured while sharing your post, please consider trying again",
-		};
-	}
-}
-
-async function share(cookies: Array<Protocol.Network.Cookie>, url: string) {
 	// Luanch browser
 	const browser = await launch({
 		// executablePath: "/usr/bin/chromium-browser",
