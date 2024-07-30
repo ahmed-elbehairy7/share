@@ -16,7 +16,6 @@ export default async function (
 		// detached: true,
 		dumpio: true,
 		args: puppeteer.defaultArgs({
-			headless: false,
 			args: [
 				"--no-sandbox",
 				"--disabled-setupid-sandbox",
