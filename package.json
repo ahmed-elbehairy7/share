@@ -5,14 +5,15 @@
 	},
 	"name": "share",
 	"version": "1.0.0",
-	"main": "share.js",
+	"main": "dist/index.js",
 	"scripts": {
 		"tsc": "tsc",
+		"clean": "rimraf node_modules && npm install --omit=dev",
 		"start": " node dist/test.js",
 		"pretest": "npm run tsc",
 		"test": "npm run start",
-		"prebuild": "npx rimraf dist/node_modules && del dist /q &&  npm run tsc && del dist\\test.js",
-		"build": "cd dist && npm init -y && npm install puppeteer@21.0.0 --omit=dev && echo please run the node-prune command before packing && start /b /wait wsl --cd D:/pam/share/dist && cd ..",
+		"prebuild": "rimraf dist/node_modules && del dist /q &&  npm run tsc && del dist\\test.js",
+		"build": "copy package.json dist /y && cd dist && npm install --omit=dev && echo please run the node-prune command before packing && start /b /wait wsl --cd D:/pam/share/dist && cd ..",
 		"postbuild": "cd dist && wsl --shell-type standard -e zip -r deployment_pack.zip . && copy deployment_pack.zip ../deployment_pack.zip && del deployment_pack.zip && cd .."
 	},
 	"keywords": [],
