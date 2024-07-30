@@ -1,4 +1,4 @@
-import { Page } from "puppeteer-core";
+import { Page } from "puppeteer";
 import getElementByText from "./getElementByText";
 
 const timeout = 500;

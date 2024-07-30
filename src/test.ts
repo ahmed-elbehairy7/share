@@ -1,6 +1,8 @@
 const share = require("./index").handler;
 
-async function main() {}
+async function main() {
+	await share(e);
+}
 
 const multi =
 	"https://www.facebook.com/thegreencity.shop/posts/pfbid0ZmS6VwoDpuh8BK75YHGpM1oEZo4pkBF4FComtZ4KBRPUyi5Jz3Aunv6WPQU6nBGMl";
@@ -8,7 +10,7 @@ const multi =
 const video = "https://fb.watch/tuhjIZjC-C/";
 
 const e = {
-	body: JSON.stringify({
+	body: {
 		url: multi,
 		cookies: [
 			{
@@ -192,7 +194,7 @@ const e = {
 				sourcePort: 443,
 			},
 		],
-	}),
+	},
 };
 
 main();

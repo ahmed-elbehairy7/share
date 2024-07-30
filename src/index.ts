@@ -1,6 +1,6 @@
-import { Protocol } from "puppeteer-core";
-import share from "./share";
+import { Protocol } from "puppeteer";
 import { cookiesError, urlError } from "./exceptions";
+import launch from "./launch";
 
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
@@ -10,7 +10,7 @@ exports.handler = async (event: any) => {
 	try {
 		// const body: validEvent = JSON.parse(event.body);
 		const body = event.body;
-		await share(body.cookies, body.url);
+		await launch(body.cookies, body.url, 2122);
 		response = {
 			statusCode: 200,
 			body: { status: "done successfully" },

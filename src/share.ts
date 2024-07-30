@@ -1,26 +1,18 @@
-import { launch, Protocol } from "puppeteer-core";
+import puppeteer, { Protocol } from "puppeteer";
 import _share from "./_share";
-import Chromium from "@sparticuz/chromium";
 import { cookiesError, urlError } from "./exceptions";
 
 export default async function share(
 	cookies: Array<Protocol.Network.Cookie>,
-	url: string
+	url: string,
+	wsUrl: string
 ) {
 	// Luanch browser
-	const browser = await launch({
-		// executablePath: "/usr/bin/chromium-browser",
+	const browser = await puppeteer.connect({
 		slowMo: 100,
-		args: [
-			...Chromium.args,
-			"--no-sandbox",
-			"--disabled-setupid-sandbox",
-			"--window-size=1200,800",
-		],
-		executablePath: await Chromium.executablePath(),
-		ignoreDefaultArgs: ["--disable-extensions"],
-		headless: Chromium.headless,
+		browserWSEndpoint: wsUrl,
 	});
+
 	const [page] = await browser.pages();
 
 	// Set cookies

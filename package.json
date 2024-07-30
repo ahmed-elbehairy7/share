@@ -1,5 +1,6 @@
 {
 	"dependencies": {
+		"@puppeteer/browsers": "^2.3.0",
 		"puppeteer": "^21.0.0",
 		"typescript": "^5.4.5"
 	},
@@ -8,12 +9,13 @@
 	"main": "dist/index.js",
 	"scripts": {
 		"tsc": "tsc",
+		"initialize": "npm install --omit=dev && npx @puppeteer/browsers install chrome@115.0.5790.102",
 		"clean": "rimraf node_modules && npm install --omit=dev",
-		"start": " node dist/test.js",
+		"start": "cd dist && node test.js",
 		"pretest": "npm run tsc",
 		"test": "npm run start",
-		"prebuild": "rimraf dist/node_modules && del dist /q &&  npm run tsc && del dist\\test.js",
-		"build": "copy package.json dist /y && cd dist && npm install --omit=dev && echo please run the node-prune command before packing && start /b /wait wsl --cd D:/pam/share/dist && cd ..",
+		"prebuild": "del dist\\*.js /q &&  npm run tsc && del dist\\test.js",
+		"build": "copy package.json dist /y  &&cd dist && npm run initialize && echo please run the node-prune command before packing && start /b /wait wsl --cd D:/pam/share/dist && cd ..",
 		"postbuild": "cd dist && wsl --shell-type standard -e zip -r deployment_pack.zip . && copy deployment_pack.zip ../deployment_pack.zip && del deployment_pack.zip && cd .."
 	},
 	"keywords": [],
