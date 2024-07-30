@@ -1,6 +1,7 @@
 import { Protocol } from "puppeteer";
 import { cookiesError, urlError } from "./exceptions";
 import launch from "./launch";
+import { eventBody } from "./eventBody";
 
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
@@ -8,9 +9,8 @@ import launch from "./launch";
 exports.handler = async (event: any) => {
 	let response;
 	try {
-		// const body: validEvent = JSON.parse(event.body);
-		const body = event.body;
-		await launch(body.cookies, body.url, 2122);
+		const body: eventBody = JSON.parse(event.body);
+		await launch(body, 2122);
 		response = {
 			statusCode: 200,
 			body: { status: "done successfully" },
@@ -23,9 +23,4 @@ exports.handler = async (event: any) => {
 		response = { statusCode, error: err.toString() };
 	}
 	return response;
-};
-
-type validEvent = {
-	url: string;
-	cookies: Array<Protocol.Network.Cookie>;
 };

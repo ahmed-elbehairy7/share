@@ -15,7 +15,7 @@
 		"pretest": "npm run tsc",
 		"test": "npm run start",
 		"prebuild": "del dist\\*.js /q &&  npm run tsc && del dist\\test.js",
-		"build": "copy package.json dist /y  &&cd dist && npm run initialize && echo please run the node-prune command before packing && echo node-prune | start /b /wait wsl --cd D:/pam/share/dist && cd ..",
+		"build": "copy package.json dist /y  &&cd dist && npm run initialize && echo node-prune | start /b /wait wsl --cd D:/pam/share/dist && cd ..",
 		"postbuild": "cd dist && wsl --shell-type standard -e zip -r deployment_pack.zip . && copy deployment_pack.zip ../deployment_pack.zip && del deployment_pack.zip && cd .."
 	},
 	"keywords": [],

@@ -1,12 +1,9 @@
 import { computeExecutablePath, launch as l } from "@puppeteer/browsers";
 import puppeteer, { Protocol } from "puppeteer";
 import share from "./share";
+import { eventBody } from "./eventBody";
 
-export default async function (
-	cookies: Array<Protocol.Network.Cookie>,
-	url: string,
-	debuggingPort: number
-) {
+export default async function (eventBody: eventBody, debuggingPort: number) {
 	const proc = l({
 		executablePath: computeExecutablePath({
 			browser: "chrome" as any,
@@ -27,11 +24,7 @@ export default async function (
 	proc.nodeProcess.stderr?.on("data", async (e) => {
 		const text: string = e.toString().trim();
 		if ((text.match(/DevTools listening on .+/)?.length as number) > 0) {
-			await share(
-				cookies,
-				url,
-				text.replace("DevTools listening on ", "")
-			);
+			await share(eventBody, text.replace("DevTools listening on ", ""));
 		}
 	});
 }

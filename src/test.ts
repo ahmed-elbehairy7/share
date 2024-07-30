@@ -10,7 +10,7 @@ const multi =
 const video = "https://fb.watch/tuhjIZjC-C/";
 
 const e = {
-	body: {
+	body: JSON.stringify({
 		url: multi,
 		cookies: [
 			{
@@ -194,7 +194,7 @@ const e = {
 				sourcePort: 443,
 			},
 		],
-	},
+	}),
 };
 
 main();
